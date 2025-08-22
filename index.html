@@ -35,19 +35,19 @@
   <input type="text" id="userNameField" placeholder="名前を入力"><br><br>
   <p>アイコンを選択：</p>
   <div id="iconSelection">
-  <div>
-    <img src="images/icon1.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon2.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon3.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon4.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon5.png" class="iconOption" onclick="selectIcon(this)">
-  </div>
-  <div>
-    <img src="images/icon6.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon7.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon8.png" class="iconOption" onclick="selectIcon(this)">
-    <img src="images/icon9.png" class="iconOption" onclick="selectIcon(this)">
-  </div>
+    <div>
+      <img src="images/icon1.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon2.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon3.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon4.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon5.png" class="iconOption" onclick="selectIcon(this)">
+    </div>
+    <div>
+      <img src="images/icon6.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon7.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon8.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon9.png" class="iconOption" onclick="selectIcon(this)">
+    </div>
   </div><br>
   <button onclick="generateCertificate()">賞状を表示</button>
 </div>
@@ -170,15 +170,23 @@ function generateCertificate(){
     iconImg.onload = ()=>{
       ctx.drawImage(iconImg, 125, 250, 250, 250);
 
-      // 名前のみ表示
+      // 名前を中央より少し上に表示
       ctx.font = "36px serif";
       ctx.fillStyle = "#000";
       ctx.textAlign = "center";
       ctx.fillText(name, canvas.width/2, 200);
+
+      // 日付を下部中央に表示
+      const today = new Date();
+      const dateStr = today.getFullYear() + "年" +
+                     (today.getMonth()+1) + "月" +
+                     today.getDate() + "日";
+      ctx.font = "24px serif";
+      ctx.fillStyle = "#000";
+      ctx.fillText(dateStr, canvas.width/2, canvas.height - 50);
     };
   };
 }
-
 
 // 初期表示
 displayQuestion();
