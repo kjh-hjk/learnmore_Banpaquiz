@@ -160,7 +160,7 @@ function generateCertificate(){
   const ctx = canvas.getContext("2d");
 
   const bg = new Image();
-  bg.src = (correctAnswers === quizzes.length) ? "images/fullscore_bg.png" : "images/participation_bg.png";
+  bg.src = (correctAnswers === quizzes.length) ? "images/fullscore_bgkari.png" : "images/participation_bgkari.png";
 
   bg.onload = () => {
     ctx.drawImage(bg,0,0,canvas.width,canvas.height);
@@ -194,6 +194,7 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
 
