@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <title>learnmore万博クイズ</title>
+<link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet"> 
 <style>
-  body { font-family: sans-serif; text-align: center; background: #f0f0f0; }
+  body { font-family: 'Kosugi Maru', sans-serif; text-align: center; background: #f0f0f0; }
   #quizContainer, #nameInput, #certificate { margin: 20px auto; width: 800px; background: #fff; padding: 20px; border-radius: 8px; }
   button { margin: 5px; padding: 8px 12px; }
   img.quizImg { max-width: 400px; display: block; margin: 10px auto; }
@@ -21,7 +22,7 @@
   <p id="questionText"></p>
   <img id="questionImg" class="quizImg" style="display:none;">
   <div id="choices"></div>
-  <button id="confirmBtn" onclick="confirmAnswer()" disabled>決定</button>
+  <button id="confirmBtn" onclick="confirmAnswer()" disabled>回答</button>
   <div>
     <button id="prevBtn" onclick="prevQuestion()">← 前の問題</button>
     <button id="nextBtn" onclick="nextQuestion()">次の問題 →</button>
@@ -30,23 +31,23 @@
 </div>
 
 <div id="nameInput" style="display:none;">
-  <h2 id="nameInputTitle">賞状作成</h2>
+  <h2 id="nameInputTitle">賞状を作成できます</h2>
   <p>名前を入力してください：</p>
   <input type="text" id="userNameField" placeholder="名前を入力"><br><br>
   <p>アイコンを選択：</p>
   <div id="iconSelection">
     <div>
-      <img src="images/icon1.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon2.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon3.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon4.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon5.PNG" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon1.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon2.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon3.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon4.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon5.png" class="iconOption" onclick="selectIcon(this)">
     </div>
     <div>
-      <img src="images/icon6.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon7.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon8.PNG" class="iconOption" onclick="selectIcon(this)">
-      <img src="images/icon9.PNG" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon6.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon7.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon8.png" class="iconOption" onclick="selectIcon(this)">
+      <img src="images/icon9.png" class="iconOption" onclick="selectIcon(this)">
     </div>
   </div><br>
   <button onclick="generateCertificate()">賞状を表示</button>
@@ -121,9 +122,13 @@ function confirmAnswer(){
   answers[currentIndex] = selectedOption;
   document.querySelectorAll(".choiceBtn").forEach(b=>b.classList.add("disabled"));
   const q = quizzes[currentIndex];
-  document.getElementById("quizResult").innerText = selectedOption === q.answer ? "正解！" : "不正解";
+  if(selectedOption === q.answer){
+    document.getElementById("quizResult").innerText = "正解！";
+  } else {
+    document.getElementById("quizResult").innerText = `不正解！ 正解は「${q.answer}」です`;
+  }
 
-  // 最後の問題なら1秒待って名前入力画面
+  // 最後の問題から1秒待って名前入力画面
   if(currentIndex === quizzes.length-1){
     setTimeout(()=>{
       const correctCount = answers.filter((a,i)=>a===quizzes[i].answer).length;
@@ -160,7 +165,7 @@ function generateCertificate(){
   const ctx = canvas.getContext("2d");
 
   const bg = new Image();
-  bg.src = (correctAnswers === quizzes.length) ? "images/fullscore_bgkari.png" : "images/participation_bgkari.png";
+  bg.src = (correctAnswers === quizzes.length) ? "images/fullscore.png" : "images/participation.png";
 
   bg.onload = () => {
     ctx.drawImage(bg,0,0,canvas.width,canvas.height);
@@ -168,22 +173,32 @@ function generateCertificate(){
     const iconImg = new Image();
     iconImg.src = selectedIcon;
     iconImg.onload = ()=>{
-      ctx.drawImage(iconImg, 325, 250, 150, 150);
+      ctx.drawImage(iconImg, 325, 320, 150, 150);
 
-      // 名前を中央より少し上に表示
-      ctx.font = "36px serif";
-      ctx.fillStyle = "#000";
+      // 名前表示
+      ctx.font = "36px 'Kosugi Maru'";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width/2, 200);
 
-      // 日付を下部中央に表示
+      // グラデーションで金色風
+      let gradientName = ctx.createLinearGradient(0, 0, 0, 100);
+      gradientName.addColorStop(0, "#FFD700");
+      gradientName.addColorStop(1, "#B8860B");
+      ctx.fillStyle = gradientName;
+
+      ctx.fillText(name, canvas.width/2, 275);
+
+      // 日付表示
       const today = new Date();
       const dateStr = today.getFullYear() + "年" +
                      (today.getMonth()+1) + "月" +
                      today.getDate() + "日";
-      ctx.font = "24px serif";
-      ctx.fillStyle = "#000";
-      ctx.fillText(dateStr, canvas.width/2, canvas.height - 50);
+      ctx.font = "24px 'Kosugi Maru'";
+      let gradientDate = ctx.createLinearGradient(0, 0, 0, 50);
+      gradientDate.addColorStop(0, "#FFD700");
+      gradientDate.addColorStop(1, "#B8860B");
+      ctx.fillStyle = gradientDate;
+
+      ctx.fillText(dateStr, canvas.width/2, canvas.height - 80);
     };
   };
 }
@@ -194,8 +209,3 @@ displayQuestion();
 
 </body>
 </html>
-
-
-
-
-
