@@ -6,7 +6,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet"> 
 <style>
   body { font-family: 'Kosugi Maru', sans-serif; text-align: center; background: #f0f0f0; }
-  #quizContainer, #nameInput, #certificate { margin: 20px auto; width: 800px; background: #fff; padding: 20px; border-radius: 8px; }
+  #quizContainer, #nameInput, #certificate { margin: 20px auto; width: 400px; background: #fff; padding: 20px; border-radius: 8px; }
   button { margin: 5px; padding: 8px 12px; }
   img.quizImg { max-width: 400px; display: block; margin: 10px auto; }
   .iconOption { width: 80px; height: 80px; border: 2px solid #ccc; margin: 5px; cursor: pointer; }
@@ -42,8 +42,6 @@
       <img src="images/icon3.PNG" class="iconOption" onclick="selectIcon(this)">
       <img src="images/icon4.PNG" class="iconOption" onclick="selectIcon(this)">
       <img src="images/icon5.PNG" class="iconOption" onclick="selectIcon(this)">
-    </div>
-    <div>
       <img src="images/icon6.PNG" class="iconOption" onclick="selectIcon(this)">
       <img src="images/icon7.PNG" class="iconOption" onclick="selectIcon(this)">
       <img src="images/icon8.PNG" class="iconOption" onclick="selectIcon(this)">
@@ -60,7 +58,7 @@
 <script>
 const quizzes = [
   { number: 1, question: "万博の中央にある、自然豊かなゾーンの名前は？", choices: ["静かな林","静寂の公園","静けさの森"], answer: "静けさの森", img: null },
-  { number: 2, question: "この画像のパビリオンはどこでしょう？", choices: ["コモンズB館","コモンズC館","コモンズD館"], answer: "コモンズB館", img: "images/q2.png" },
+  { number: 2, question: "この画像のパビリオンはどこでしょう？", choices: ["コモンズB館","コモンズC館","コモンズD館"], answer: "コモンズC館", img: "images/q2.png" },
   { number: 3, question: "「２億円トイレ」で有名なトイレ５で使われていない色は何でしょう？", choices: ["オレンジ","黄色","緑"], answer: "緑", img: null },
   { number: 4, question: "この画像のパビリオンはどれでしょう？", choices: ["関西パビリオン","EXPO ホール「シャインハット」","三菱未来館"], answer: "EXPO ホール「シャインハット」", img: "images/q4.png" },
   { number: 5, question: "⑤にあるお寿司屋さんは何でしょう？", choices: ["くら寿司","スシロー","大起水産"], answer: "くら寿司", img: null },
@@ -209,5 +207,6 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
