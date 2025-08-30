@@ -123,7 +123,7 @@ function confirmAnswer(){
   document.querySelectorAll(".choiceBtn").forEach(b=>b.classList.add("disabled"));
   const q = quizzes[currentIndex];
   if(selectedOption === q.answer){
-    document.getElementById("quizResult").innerText = "正解！やったね！";
+    document.getElementById("quizResult").innerText = "正解！やったね💮";
   } else {
     document.getElementById("quizResult").innerText = `残念😭 正解は「${q.answer}」です`;
   }
@@ -224,6 +224,7 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
 
