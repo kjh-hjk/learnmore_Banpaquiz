@@ -203,6 +203,9 @@ function generateCertificate(){
       // Canvasを画像に変換
       const imgData = canvas.toDataURL("image/png");
 
+      // canvas非表示
+      canvas.style.display = "none";
+
       // imgタグを作成して差し込む
       const resultImg = document.createElement("img");
       resultImg.src = imgData;
@@ -221,6 +224,7 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
 
