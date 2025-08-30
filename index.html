@@ -104,7 +104,7 @@ function displayQuestion() {
   document.getElementById("nextBtn").style.display = currentIndex === quizzes.length-1 ? "none" : "inline-block";
 
   document.getElementById("quizResult").innerText = answers[currentIndex] !== null ? 
-    (answers[currentIndex]===q.answer ? "正解！やったね！" : "残念") : "";
+    (answers[currentIndex]===q.answer ? "正解" : "不正解") : "";
 }
 
 // 選択肢選択
@@ -123,9 +123,9 @@ function confirmAnswer(){
   document.querySelectorAll(".choiceBtn").forEach(b=>b.classList.add("disabled"));
   const q = quizzes[currentIndex];
   if(selectedOption === q.answer){
-    document.getElementById("quizResult").innerText = "正解！";
+    document.getElementById("quizResult").innerText = "正解！やったね！";
   } else {
-    document.getElementById("quizResult").innerText = `不正解！ 正解は「${q.answer}」です`;
+    document.getElementById("quizResult").innerText = `残念😭 正解は「${q.answer}」です`;
   }
 
   // 最後の問題から1秒待って名前入力画面
@@ -224,6 +224,7 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
 
