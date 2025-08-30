@@ -199,6 +199,18 @@ function generateCertificate(){
       ctx.fillStyle = gradientDate;
 
       ctx.fillText(dateStr, canvas.width/2, canvas.height - 80);
+
+      // Canvasを画像に変換
+      const imgData = canvas.toDataURL("image/png");
+
+      // imgタグを作成して差し込む
+      const resultImg = document.createElement("img");
+      resultImg.src = imgData;
+      resultImg.alt = "完成した賞状";
+      resultImg.style.maxWidth = "100%";
+
+      // 表示場所に追加（canvasの下に表示）
+      document.getElementById("certificate").appendChild(resultImg);
     };
   };
 }
@@ -209,6 +221,7 @@ displayQuestion();
 
 </body>
 </html>
+
 
 
 
